@@ -50,7 +50,6 @@ jobs:
           scope: '@sasse'
 
       - name: Run semantic release for React package and capture output
-        id: semantic_release
         run: |
           output=$(npx semantic-release)
           sanitized_output=$(echo "$output" | tr '\n' ' ')
@@ -62,7 +61,6 @@ jobs:
         working-directory: ./packages/react
 
       - name: Parse semantic-release output
-        id: parse_release
         run: |
           echo "SRVERSION=$(echo "${{ steps.semantic_release.outputs.release_output }}" | grep -oP 'Published release \K\d+\.\d+\.\d+')" >> $GITHUB_ENV
           if echo "${{ steps.semantic_release.outputs.release_output }}" | grep -q 'Published release'; then
@@ -70,7 +68,6 @@ jobs:
           fi
 
       - name: Save outputs
-        id: set_output
         run: |
           echo "srversion=$SRVERSION" >> "$GITHUB_OUTPUT"
           echo "srrelease=$SRRELEASE" >> "$GITHUB_OUTPUT"
@@ -87,7 +84,6 @@ jobs:
           npm run build
 
       - name: Run semantic release for JS package
-        id: semantic_release
         run: |
           npx semantic-release
         env:
