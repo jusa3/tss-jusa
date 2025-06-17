@@ -13,6 +13,10 @@
     "package.json"
   ],
   "repository": "https://github.com/jusa3/tss-jusa.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
+  },
   "scripts": {
     "prepare": "patch-package",
     "build": "npx vite build",
