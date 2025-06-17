@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@jusa3/tss-workspace",
+  "name": "@sasse/tss-workspace",
   "version": "0.0.0",
   "repository": "https://github.com/jusa3/tss-jusa.git",
   "workspaces": [

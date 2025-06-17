@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://npm.pkg.github.com/'
-          scope: '@jusa3'
+          scope: '@sasse'
 
       - name: Install root dependencies
         run: npm ci
@@ -49,7 +49,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org/'
-          scope: '@jusa3'
+          scope: '@sasse'
 
       - name: Run semantic release and capture output
         id: semantic_release
@@ -99,7 +99,7 @@ jobs:
 #        with:
 #          node-version: ${{ matrix.node-version }}
 #          registry-url: 'https://npm.pkg.github.com/'
-#          scope: '@jusa3'
+#          scope: '@sasse'
 #
 #      - name: Install dependencies # for Storybook
 #        run: npm ci
