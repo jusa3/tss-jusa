@@ -78,20 +78,17 @@ jobs:
           echo "SRVERSION is $SRVERSION"
           echo "SRRELEASE is $SRRELEASE"
 
-      - name: Update package.json with new version
-        working-directory: ./packages/js
-        run: |
-          jq --arg version "$SRVERSION" '.version = $version' package.json > tmp.json && mv tmp.json package.json
+      - name: Change version
+        uses: reedyuk/npm-version@1.1.1
+        with:
+          version: "$SRVERSION"
+          package: ./packages/js
 
-      - name: Commit and push updated package.json
-        working-directory: ./packages/js
-        run: |
-          git config user.name ${{ github.actor }}
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.KM }}@github.com/${{ github.repository }}
-          git add package.json
-          git commit -m "chore(release): update package.json to v$VERSION"
-          git push
+      - name: Publish JS package
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_AUTO }}
+          package: ./packages/js
 
       - name: Install and build JS package
         working-directory: ./packages/js
@@ -100,15 +97,6 @@ jobs:
           npm run build
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
-
-      - name: Run semantic release for JS package
-        run: |
-          npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.KM }} # for access to the repo
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTO }} # for access to NPM
-        working-directory: ./packages/js
-
 
 #  documentation:
 #    if: github.ref == 'refs/heads/main' && needs.build.outputs.srrelease == 'release'
