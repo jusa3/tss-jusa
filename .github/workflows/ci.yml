@@ -85,10 +85,11 @@ jobs:
           package: ./packages/js
 
       - name: Publish JS package
-        uses: JS-DevTools/npm-publish@v3
-        with:
+        run: |
+          npm publish
+        working-directory: ./packages/js
+        env:
           token: ${{ secrets.NPM_AUTO }}
-          package: ./packages/js
 
       - name: Install and build JS package
         working-directory: ./packages/js
