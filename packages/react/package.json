@@ -1,5 +1,5 @@
 {
-  "name": "@ts4nfdi/terminology-service-suite",
+  "name": "@jusa3/tss",
   "version": "5.0.5",
   "description": "This project includes a widget component library derived from the semantic lookup service SemLookP. The Terminology Service is a repository for biomedical resources that aims to provide a single point of access to the latest ontology and terminology versions. User interface (UI) functionalities were extracted and implemented as separate widgets to allow integration into other 3rd party services, thus simplifying the development of user interfaces and the visualization of semantic information. The widgets are built with React and TypeScript and can be used in React applications. SemLookP and the widgets are based on the Ontology Lookup Service (OLS), software developed by EBI.",
   "author": "TS4NFDI",
@@ -12,13 +12,14 @@
     "dist",
     "package.json"
   ],
-  "repository": "https://github.com/ts4nfdi/terminology-service-suite.git",
+  "repository": "https://github.com/jusa3/tss-jusa.git",
   "scripts": {
     "prepare": "patch-package",
     "build": "npx vite build",
     "test": "vitest",
     "test:storybook": "vitest --project=storybook",
-    "storybook": "storybook dev -p 6006 "
+    "storybook": "storybook dev -p 6006 ",
+    "semantic-release": "npx semantic-release"
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.3",
@@ -29,7 +30,8 @@
     "moment": "^2.30.1",
     "react": "17.0.2 || ^18.3.1",
     "react-dom": "17.0.2 || ^18.3.1",
-    "react-query": "^3.39.2"
+    "react-query": "^3.39.2",
+    "semantic-release": "^24.2.3"
   },
   "dependencies": {
     "@google/model-viewer": "^4.0.0",

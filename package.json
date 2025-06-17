@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@ts4nfdi/terminology-service-suite-workspace",
+  "name": "@jusa3/tss-workspace",
   "version": "0.0.0",
-  "repository": "https://github.com/ts4nfdi/terminology-service-suite.git",
+  "repository": "https://github.com/jusa3/tss-jusa.git",
   "workspaces": [
     "src/react",
     "src/js"
