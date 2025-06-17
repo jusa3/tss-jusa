@@ -97,7 +97,7 @@ jobs:
           npm publish
         working-directory: packages/js
         env:
-          token: ${{ secrets.NPM_AUTO }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTO }}
 
 #  documentation:
 #    if: github.ref == 'refs/heads/main' && needs.build.outputs.srrelease == 'release'
