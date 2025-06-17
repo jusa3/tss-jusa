@@ -6,9 +6,13 @@ on:
   pull_request:
   workflow_dispatch:
 
-concurrency:
+concurrency: # jobs run in sequence
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: false # don't cancel the previous job
+
+permissions:
+  contents: write
+  packages: write
 
 jobs:
   build:
@@ -55,7 +59,7 @@ jobs:
           echo "release_output=$sanitized_output" >> $GITHUB_OUTPUT
           echo "$output"
         env:
-          GITHUB_TOKEN: ${{ secrets.KM }} # for access to the repo
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # for access to the repo
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTO }} # for access to NPM
         working-directory: ./packages/react
 
