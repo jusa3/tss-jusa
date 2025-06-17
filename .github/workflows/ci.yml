@@ -99,6 +99,24 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTO }}
 
+      - name: Update package.json with new version
+        working-directory: packages/js
+        run: |
+          echo "$SRVERSION"
+          jq --arg version "$SRVERSION" '.version = $version' package.json > tmp.json && mv tmp.json package.json
+
+      - name: Commit and push updated package.json
+        working-directory: packages/js
+        env:
+          GITHUB_TOKEN: ${{ secrets.KM }}
+        run: |
+          git config user.name ${{ github.actor }}
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.KM }}@github.com/${{ github.repository }}.git
+          git add package.json
+          git commit -m "chore(release): update package.json to v$VERSION"
+          git push
+
 #  documentation:
 #    if: github.ref == 'refs/heads/main' && needs.build.outputs.srrelease == 'release'
 #    needs: build
