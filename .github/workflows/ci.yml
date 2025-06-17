@@ -84,6 +84,7 @@ jobs:
           jq --arg version "$SRVERSION" '.version = $version' package.json > tmp.json && mv tmp.json package.json
 
       - name: Commit and push updated package.json
+        working-directory: ./packages/js
         run: |
           git config user.name "github-actions{bot]"
           git config user.email "github-actions@users.noreply.github.com"
