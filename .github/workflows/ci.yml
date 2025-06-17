@@ -5,6 +5,7 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
@@ -18,37 +19,28 @@ jobs:
     outputs:
       srversion: ${{ steps.setoutput.outputs.srversion }}
       srrelease: ${{ steps.setoutput.outputs.srrelease }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-#        with:
-#          persist-credentials: false # Make sure semantic-release uses its own credentials
 
-      - name: Set up Node.js (GitHub registry) # for install and build
+      - name: Set up Node.js (GitHub registry)
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://npm.pkg.github.com/'
           scope: '@jusa3'
 
-      - name: Install dependencies
+      - name: Install root dependencies
         run: npm ci
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.KM }} # KM PAT for esbuild-dynamic-import and gh-pages-multi
 
-      - name: Install dependencies React
-        run: npm ci
-        with:
-          context: ./packages/react
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.KM }} # KM PAT for esbuild-dynamic-import and gh-pages-multi
+      - name: Install and build React package
+        working-directory: ./packages/react
+        run: |
+          npm ci
+          npm run build
 
-      - name: Build React
-        run: npm run build
-        with:
-          context: ./packages/react
-
-      - name: Set up Node.js (npm registry) # for publishing
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -68,27 +60,24 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.KM }} # for GitHub release
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTO }} # for publishing to NPM
 
-      - name: Extract newly published version number
+      - name: Parse semantic-release output
+        id: parse_release
         run: |
           echo "SRVERSION=$(echo "${{ steps.semantic_release.outputs.release_output }}" | grep -oP 'Published release \K\d+\.\d+\.\d+')" >> $GITHUB_ENV
-
-      - name: Capture semantic-release status
-        run: |
           if echo "${{ steps.semantic_release.outputs.release_output }}" | grep -q 'Published release'; then
             echo "SRRELEASE=release" >> $GITHUB_ENV
           fi
 
-      - name: Save extracted version and release status as workflow outputs
-        id: setoutput
+      - name: Save outputs
+        id: set_output
         run: |
           echo "srversion=$SRVERSION" >> "$GITHUB_OUTPUT"
           echo "srrelease=$SRRELEASE" >> "$GITHUB_OUTPUT"
 
-      - name: Print SRVERSION for debugging
-        run: echo "SRVERSION is $SRVERSION"
-
-      - name: Print SRRELEASE for debugging
-        run: echo "SRRELEASE is $SRRELEASE"
+      - name: Print version info
+        run: |
+          echo "SRVERSION is $SRVERSION"
+          echo "SRRELEASE is $SRRELEASE"
 
 
 #  documentation:
