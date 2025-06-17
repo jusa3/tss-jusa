@@ -86,8 +86,9 @@ jobs:
       - name: Commit and push updated package.json
         working-directory: ./packages/js
         run: |
-          git config user.name "github-actions{bot]"
-          git config user.email "github-actions@users.noreply.github.com"
+          git config user.name ${{ github.actor }}
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.KM }}@github.com/${{ github.repository }}
           git add package.json
           git commit -m "chore(release): update package.json to v$VERSION"
           git push
