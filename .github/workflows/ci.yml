@@ -78,6 +78,19 @@ jobs:
           echo "SRVERSION is $SRVERSION"
           echo "SRRELEASE is $SRRELEASE"
 
+      - name: Update package.json with new version
+        working-directory: ./packages/js
+        run: |
+          jq --arg version "$SRVERSION" '.version = $version' package.json > tmp.json && mv tmp.json package.json
+
+      - name: Commit and push updated package.json
+        run: |
+          git config user.name "github-actions{bot]"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add package.json
+          git commit -m "chore(release): update package.json to v$VERSION"
+          git push
+
       - name: Install and build JS package
         working-directory: ./packages/js
         run: |
