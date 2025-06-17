@@ -10,12 +10,6 @@ concurrency: # jobs run in sequence
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false # don't cancel the previous job
 
-#permissions: # for GITHUB_TOKEN
-#  contents: write
-#  packages: write
-#  issues: write
-#  pull-requests: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
