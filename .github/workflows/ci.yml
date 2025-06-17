@@ -55,8 +55,8 @@ jobs:
           echo "release_output=$sanitized_output" >> $GITHUB_OUTPUT
           echo "$output"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTO }}
+          GITHUB_TOKEN: ${{ secrets.KM }} # for access to the repo
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTO }} # for access to NPM
         working-directory: ./packages/react
 
       - name: Parse semantic-release output
