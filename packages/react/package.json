@@ -12,7 +12,7 @@
     "dist",
     "package.json"
   ],
-  "repository": "https://github.com/sasse/tss-jusa.git",
+  "repository": "https://github.com/jusa3/tss-jusa.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/",
     "access": "public"
