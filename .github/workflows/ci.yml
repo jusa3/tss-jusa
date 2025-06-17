@@ -10,7 +10,7 @@ concurrency: # jobs run in sequence
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false # don't cancel the previous job
 
-permissions:
+permissions: # for GITHUB_TOKEN
   contents: write
   packages: write
 
