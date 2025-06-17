@@ -50,6 +50,7 @@ jobs:
           scope: '@sasse'
 
       - name: Run semantic release for React package and capture output
+        id: semantic_release
         run: |
           output=$(npx semantic-release)
           sanitized_output=$(echo "$output" | tr '\n' ' ')
@@ -82,6 +83,8 @@ jobs:
         run: |
           npm ci
           npm run build
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
 
       - name: Run semantic release for JS package
         run: |
