@@ -53,9 +53,11 @@ jobs:
         id: semantic_release
         run: |
           output=$(npx semantic-release)
-          sanitized_output=$(echo "$output" | tr '\n' ' ')
-          echo "release_output=$sanitized_output" >> $GITHUB_OUTPUT
           echo "$output"
+          sanitized_output=$(echo "$output" | tr '\n' ' ' | tr -d '"\\@\/' | iconv -c -f utf-8 -t ascii)
+          version=$(echo "$sanitized_output" | grep -oP 'Published release \K\d+\.\d+\.\d+')
+          echo "Detected version: $version"
+          echo "SRVERSION=$version" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.KM }} # for access to the repo
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTO }} # for access to NPM
@@ -114,7 +116,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.KM }}@github.com/${{ github.repository }}.git
           git add package.json
-          git commit -m "chore(release): update package.json to v$VERSION"
+          git commit -m 'chore(release): update JS package.json to v"$VERSION"'
           git push
 
 #  documentation:
