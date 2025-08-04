@@ -174,7 +174,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: react-widgets
-          path: 'react'
+          path: 'packages/react'
 
       - name: Install and Build JS Storybook
         working-directory: packages/js
@@ -188,7 +188,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           name: js-widgets
-          path: 'js'
+          path: 'packages/js'
 
       - name: Install and Build Composed Storybook
         run: |
