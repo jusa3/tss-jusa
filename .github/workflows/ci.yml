@@ -128,8 +128,19 @@ jobs:
           git commit -m 'chore(release): update JS package.json to v"$VERSION"'
           git push
 
+  print-debug:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print github.ref
+        run: echo "${{ github.ref }}"
+      - name: Print srrelease
+        run:
+          echo "srrelease: ${{ needs.build.outputs.srrelease }}"
+
+
   documentation:
-    if: github.ref == 'refs/heads/main' && env.SRRELEASE == 'release'
+    if: github.ref == 'refs/heads/main' && needs.build.outputs.srrelease == 'release'
     needs: build
     runs-on: ubuntu-latest
     permissions:
