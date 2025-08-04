@@ -129,7 +129,7 @@ jobs:
           git push
 
   documentation:
-    if: github.ref == 'refs/heads/main' && needs.build.outputs.srrelease == 'release'
+    if: github.ref == 'refs/heads/main' && env.SRRELEASE == 'release'
     needs: build
     runs-on: ubuntu-latest
     permissions:
