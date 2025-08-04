@@ -82,10 +82,10 @@ jobs:
       - name: Print conditions
         run: |
           echo "github.ref = ${{ github.ref }}"
-          echo "needs.build.outputs.srrelease = ${{ needs.build.outputs.srrelease }}"
+          echo "env.SRRELEASE = ${{ env.SRRELEASE }}"
 
       - name: Install and build JS package
-        if: github.ref == 'refs/heads/main' && needs.build.outputs.srrelease == 'release'
+        if: github.ref == 'refs/heads/main' && env.SRRELEASE == 'release'
         working-directory: packages/js
         run: |
           npm ci
