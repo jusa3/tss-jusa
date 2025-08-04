@@ -79,6 +79,11 @@ jobs:
           echo "SRVERSION is $SRVERSION"
           echo "SRRELEASE is $SRRELEASE"
 
+      - name: Print conditions
+        run: |
+          echo "github.ref = ${{ github.ref }}"
+          echo "needs.build.outputs.srrelease = ${{ needs.build.outputs.srrelease }}"
+
       - name: Install and build JS package
         if: github.ref == 'refs/heads/main' && needs.build.outputs.srrelease == 'release'
         working-directory: packages/js
