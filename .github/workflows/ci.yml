@@ -135,8 +135,7 @@ jobs:
       - name: Print github.ref
         run: echo "${{ github.ref }}"
       - name: Print srrelease
-        run:
-          echo "srrelease: ${{ needs.build.outputs.srrelease }}"
+        run: echo "${{ needs.build.outputs.srrelease }}"
 
 
   documentation:
