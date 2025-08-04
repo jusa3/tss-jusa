@@ -13,6 +13,7 @@ import {
   onNavigateArgType,
   useLegacyArgType,
 } from "../../../stories/storyArgs";
+import { expect, waitFor, within } from "storybook/test";
 
 export const ResourcesWidgetStoryArgTypes = {
   ...apiArgType,
@@ -30,29 +31,25 @@ export const ResourcesWidgetStoryArgs = {
   api: "",
   useLegacy: true,
   initialEntriesPerPage: 100,
-  pageSizeOptions: [10, 25, 50, 100],
+  pageSizeOptions: [10, 25, 50, 100] as number[],
   initialSortField: "config.preferredPrefix",
-  initialSortDir: "asc",
+  initialSortDir: "asc" as "asc" | "desc",
   actions: [],
   onNavigate: "Console message",
   parameter: "collection=nfdi4health",
 };
 
-export const ResourcesWidget1 = {
-  args: {
+export const ResourcesWidget1Args = {
     api: globals.ZBMED_OLS4_API,
     initialEntriesPerPage: 100,
-    pageSizeOptions: [10, 25, 50, 100],
+    pageSizeOptions: [10, 25, 50, 100] as number[],
     initialSortField: "config.preferredPrefix",
     initialSortDir: "asc" as const,
     onNavigate: "Console message",
     parameter: "collection=nfdi4health",
-  },
 };
 
-export const WithActions = {
-  args: {
-    ...ResourcesWidget1.args,
+export const WithActionsArgs = {
     actions: [
       // TODO Allow usage of react-router links
       {
@@ -86,25 +83,30 @@ export const WithActions = {
         ),
       },
     ],
-  },
 };
 
-export const WithActionsAndSafety = {
-  args: {
-    ...WithActions.args,
+export const WithActionsAndSafetyArgs = {
     parameter: "collection=safety",
-  },
 };
 
-export const ResourcesWidgetLogos = {
-  args: {
+export const ResourcesWidgetLogosArgs = {
     api: globals.EBI_API_ENDPOINT,
     initialEntriesPerPage: 100,
-    pageSizeOptions: [10, 25, 50, 100],
+    pageSizeOptions: [10, 25, 50, 100] as number[],
     initialSortField: "config.preferredPrefix",
     initialSortDir: "asc" as const,
     targetLink: "https://semanticlookup.zbmed.de/dev/",
     parameter: "",
     useLegacy: false,
-  },
+};
+
+export const commonResourcesWidgetPlay = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+
+  await waitFor(async () => {
+    const content = canvas.getByTestId('resources');
+    await expect(content).toBeInTheDocument();
+  }, {
+    timeout: 3000
+  })
 };

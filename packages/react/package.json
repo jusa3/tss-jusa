@@ -22,8 +22,7 @@
     "build": "npx vite build",
     "test": "vitest",
     "test:storybook": "vitest --project=storybook",
-    "storybook": "storybook dev -p 6006 ",
-    "semantic-release": "npx semantic-release"
+    "storybook": "storybook dev -p 6006 "
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.3",
@@ -32,8 +31,8 @@
     "@emotion/react": "^11.13.5",
     "axios": "^1.1.2",
     "moment": "^2.30.1",
-    "react": "17.0.2 || ^18.3.1",
-    "react-dom": "17.0.2 || ^18.3.1",
+    "react": "17.0.2 || ^18.3.1 || ^19",
+    "react-dom": "17.0.2 || ^18.3.1 || ^19",
     "react-query": "^3.39.2"
   },
   "dependencies": {

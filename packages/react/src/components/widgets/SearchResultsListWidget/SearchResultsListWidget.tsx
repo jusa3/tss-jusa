@@ -275,7 +275,7 @@ function SearchResultsListWidget(props: SearchResultsListWidgetProps) {
   }
 
   return (
-    <>
+    <div data-testid="search-result">
       <div className={finalClassName}>
         <SearchBarWidget
           api={api}
@@ -427,8 +427,26 @@ function SearchResultsListWidget(props: SearchResultsListWidgetProps) {
           </EuiFlexItem>
         </EuiFlexGroup>
       </div>
-    </>
+    </div>
   );
 }
 
-export { SearchResultsListWidget };
+function WrappedSearchResultsListWidget(props: SearchResultsListWidgetProps) {
+  const queryClient = new QueryClient();
+  return (
+    <EuiProvider colorMode="light">
+      <QueryClientProvider client={queryClient}>
+        <SearchResultsListWidget
+          api={props.api}
+          query={props.query}
+          parameter={props.parameter}
+          initialItemsPerPage={props.initialItemsPerPage}
+          itemsPerPageOptions={props.itemsPerPageOptions}
+          targetLink={props.targetLink}
+        />
+      </QueryClientProvider>
+    </EuiProvider>
+  );
+}
+
+export { SearchResultsListWidget, WrappedSearchResultsListWidget };

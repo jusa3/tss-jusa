@@ -26,7 +26,7 @@ function TermDepictionWidget(props: TermDepictionWidgetProps) {
   );
 
   return (
-    <>
+    <div data-testid="term-depiction">
       {isLoading && <EuiLoadingSpinner size="s" />}
       {isSuccess && data && data.getDepictionUrl().length !== 0 && (
         <>
@@ -63,8 +63,24 @@ function TermDepictionWidget(props: TermDepictionWidgetProps) {
       {isError && (
         <EuiText>{getErrorMessageToDisplay(error, "depiction")}</EuiText>
       )}
-    </>
+    </div>
   );
 }
 
-export { TermDepictionWidget };
+function WrappedTermDepictionWidget(props: TermDepictionWidgetProps) {
+  const queryClient = new QueryClient();
+  return (
+    <EuiProvider colorMode="light">
+      <QueryClientProvider client={queryClient}>
+        <TermDepictionWidget
+          api={props.api}
+          iri={props.iri}
+          ontologyId={props.ontologyId}
+          useLegacy={props.useLegacy}
+        />
+      </QueryClientProvider>
+    </EuiProvider>
+  );
+}
+
+export { TermDepictionWidget, WrappedTermDepictionWidget };

@@ -238,7 +238,7 @@ function OntologyInfoWidget(props: OntologyInfoWidgetProps) {
   }
 
   return (
-    <div className={finalClassName}>
+    <div className={finalClassName} data-testid="ontology-info">
       <EuiCard
         title={hasTitle ? "Ontology Information" : ""}
         layout="horizontal"
@@ -275,4 +275,25 @@ function OntologyInfoWidget(props: OntologyInfoWidgetProps) {
   );
 }
 
-export { OntologyInfoWidget };
+function WrappedOntologyInfoWidget(props: OntologyInfoWidgetProps) {
+  const queryClient = new QueryClient();
+  return (
+    <EuiProvider colorMode="light">
+      <QueryClientProvider client={queryClient}>
+        <OntologyInfoWidget
+          ontologyId={props.ontologyId}
+          api={props.api}
+          parameter={props.parameter}
+          useLegacy={props.useLegacy}
+          showBadges={props.showBadges}
+          hasTitle={props.hasTitle}
+          onNavigateToEntity={props.onNavigateToEntity}
+          onNavigateToOntology={props.onNavigateToOntology}
+          onNavigateToDisambiguate={props.onNavigateToDisambiguate}
+        />
+      </QueryClientProvider>
+    </EuiProvider>
+  );
+}
+
+export { OntologyInfoWidget, WrappedOntologyInfoWidget };

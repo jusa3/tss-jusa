@@ -36,6 +36,7 @@ function AlternativeNameTabWidget(props: AlternativeNameTabWidgetProps) {
   );
 
   return (
+      <div data-testid="alternative-name">
     <AlternativeNameTabPresentation
       synonyms={
         data
@@ -48,7 +49,26 @@ function AlternativeNameTabWidget(props: AlternativeNameTabWidgetProps) {
       error={error}
       className={className}
     />
+      </div>
   );
 }
 
-export { AlternativeNameTabWidget };
+function WrappedAlternativeNameTabWidget(props: AlternativeNameTabWidgetProps) {
+  const queryClient = new QueryClient();
+  return (
+    <EuiProvider colorMode="light" globalStyles={false}>
+      <QueryClientProvider client={queryClient}>
+        <AlternativeNameTabWidget
+          iri={props.iri}
+          api={props.api}
+          ontologyId={props.ontologyId}
+          entityType={props.entityType}
+          parameter={props.parameter}
+          className={props.className}
+        />
+      </QueryClientProvider>
+    </EuiProvider>
+  );
+}
+
+export { AlternativeNameTabWidget, WrappedAlternativeNameTabWidget };

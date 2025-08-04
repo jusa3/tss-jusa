@@ -304,7 +304,7 @@ function GraphViewWidget(props: GraphViewWidgetProps) {
   return (
     <div className={finalClassName}>
       {isError && <EuiText>{getErrorMessageToDisplay(error, "graph")}</EuiText>}
-      <EuiPanel style={{ fontSize: 12 }} paddingSize="s" borderRadius="none">
+      <EuiPanel style={{ fontSize: 12 }} paddingSize="s" borderRadius="none" data-testid="graph-view">
         <EuiButton size="s" onClick={reset}>
           Reset
         </EuiButton>
@@ -357,5 +357,20 @@ function GraphViewWidget(props: GraphViewWidgetProps) {
     </div>
   );
 }
+function WrappedGraphViewWidget(props: GraphViewWidgetProps) {
+  const queryClient = new QueryClient();
+  return (
+    <EuiProvider colorMode="light" globalStyles={false}>
+      <QueryClientProvider client={queryClient}>
+        <GraphViewWidget
+          api={props.api}
+          iri={props.iri}
+          ontologyId={props.ontologyId}
+          rootWalk={props.rootWalk}
+        />
+      </QueryClientProvider>
+    </EuiProvider>
+  );
+}
 
-export { GraphViewWidget };
+export { GraphViewWidget, WrappedGraphViewWidget };

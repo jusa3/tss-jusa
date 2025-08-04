@@ -8,6 +8,7 @@ import {
   parameterArgType,
   useLegacyArgType,
 } from "../../../../stories/storyArgs";
+import { expect, waitFor, within } from "storybook/test";
 
 export const EntityOntoListWidgetStoryArgTypes = {
   ...apiArgType,
@@ -24,42 +25,45 @@ export const EntityOntoListWidgetStoryArgs = {
   useLegacy: false,
   iri: "",
   ontologyId: "",
-  entityType: "",
+  entityType: "term",
   parameter: "",
   onNavigateToOntology: "Console message",
-};
+} as const;
 
-export const v2ApiEFO = {
-  args: {
+export const v2ApiEFOArgs = {
     iri: "http://www.ebi.ac.uk/efo/EFO_0000400",
     api: globals.EBI_API_ENDPOINT,
     entityType: "term",
     ontologyId: "efo",
-  },
-};
+} as const;
 
-export const v2ApiONS = {
-  args: {
+export const v2ApiONSArgs = {
     iri: "http://www.ebi.ac.uk/efo/EFO_0000400",
     api: globals.EBI_API_ENDPOINT,
     ontologyId: "ons",
-  },
-};
+} as const;
 
-export const legacyApi = {
-  args: {
+export const legacyApiArgs = {
     iri: "http://www.ebi.ac.uk/efo/EFO_0000400",
     api: globals.EBI_API_ENDPOINT,
     entityType: "term",
     ontologyId: "efo",
     useLegacy: true,
-  },
-};
+} as const;
 
-export const exceedsMaxDisplay = {
-  args: {
+export const exceedsMaxDisplayArgs = {
     iri: "http://purl.obolibrary.org/obo/HP_0000819",
     api: globals.EBI_API_ENDPOINT,
     ontologyId: "hp",
-  },
+} as const;
+
+export const commonEntityOntoListWidgetPlay = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+
+  await waitFor(async () => {
+    const content = canvas.getByTestId('entity-onto-list');
+    await expect(content).toBeInTheDocument();
+  }, {
+    timeout: 3000
+  })
 };

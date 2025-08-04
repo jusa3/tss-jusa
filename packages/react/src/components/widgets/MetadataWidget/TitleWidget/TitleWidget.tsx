@@ -38,6 +38,7 @@ function TitleWidget(props: TitleWidgetProps) {
   );
 
   return (
+    <div data-testid="title">
     <TitlePresentation
       title={
         data ? (isOntology(data) ? data.getName() : data.getLabel()) : null
@@ -55,7 +56,31 @@ function TitleWidget(props: TitleWidgetProps) {
       thingType={thingType ? thingType : data ? data.getType() : undefined}
       href={href}
     />
+    </div>
   );
 }
 
-export { TitleWidget };
+function WrappedTitleWidget(props: TitleWidgetProps) {
+  const queryClient = new QueryClient();
+  return (
+    <EuiProvider colorMode="light" globalStyles={false}>
+      <QueryClientProvider client={queryClient}>
+        <TitleWidget
+          api={props.api}
+          thingType={props.thingType}
+          iri={props.iri}
+          ontologyId={props.ontologyId}
+          titleText={props.titleText}
+          parameter={props.parameter}
+          useLegacy={props.useLegacy}
+          defaultValue={props.defaultValue}
+          className={props.className}
+          onNavigateTo={props.onNavigateTo}
+          href={props.href}
+        />
+      </QueryClientProvider>
+    </EuiProvider>
+  );
+}
+
+export { TitleWidget, WrappedTitleWidget };

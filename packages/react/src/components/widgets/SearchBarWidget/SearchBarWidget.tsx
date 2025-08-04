@@ -90,7 +90,7 @@ function SearchBarWidget(props: SearchBarWidgetProps) {
   }, [selectedOptions]);
 
   return (
-    <>
+    <div data-testid="search-bar">
       <EuiComboBox
         id={"suggest"}
         isClearable
@@ -108,8 +108,24 @@ function SearchBarWidget(props: SearchBarWidgetProps) {
           setSearchValue(item);
         }}
       />
-    </>
+    </div>
   );
 }
 
-export { SearchBarWidget };
+function WrappedSearchBarWidget(props: SearchBarWidgetProps) {
+  const queryClient = new QueryClient();
+  return (
+    <EuiProvider colorMode="light">
+      <QueryClientProvider client={queryClient}>
+        <SearchBarWidget
+          api={props.api}
+          query={props.query}
+          selectionChangedEvent={props.selectionChangedEvent}
+          parameter={props.parameter}
+        />
+      </QueryClientProvider>
+    </EuiProvider>
+  );
+}
+
+export { SearchBarWidget, WrappedSearchBarWidget };
