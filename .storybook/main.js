@@ -4,12 +4,11 @@ const {
 } = require("node:path");
 
 module.exports = {
-  stories: ["./*.stories.mdx"],
+  stories: ["./*.mdx"],
 
   addons: [
     getAbsolutePath("@storybook/addon-links"),
-    getAbsolutePath("@storybook/addon-docgen"),
-    getAbsolutePath("@storybook/addon-docs")
+    getAbsolutePath("@storybook/addon-docs"),
   ],
 
   framework: {
@@ -30,9 +29,9 @@ module.exports = {
           // this has to be the port on which storybook:react runs
           url: "http://localhost:6006",
         },
-        html: {
-          title: "HTML",
-          // this has to be the port on which storybook:html runs
+        js: {
+          title: "Plain JavaScript",
+          // this has to be the port on which storybook:js runs
           url: "http://localhost:6007",
         },
       };
@@ -43,7 +42,7 @@ module.exports = {
         url: "https://ts4nfdi.github.io/terminology-service-suite/react/latest",
       },
       html: {
-        title: "HTML",
+        title: "JS",
         url: "https://ts4nfdi.github.io/terminology-service-suite/html/latest",
       },
     };

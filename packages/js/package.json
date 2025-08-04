@@ -22,7 +22,9 @@
     "build": "npx vite build",
     "test": "vitest",
     "test:storybook": "vitest --project=storybook",
-    "storybook": "storybook dev -p 6007"
+    "storybook": "storybook dev -p 6007",
+    "build:storybook": "storybook build -c .storybook -o storybook-static",
+    "build:storybook-js-dev": "set CONFIG_TYPE=DEVELOPMENT && storybook build -c .storybook -o storybook-js"
   },
   "devDependencies": {
     "@ts4nfdi/terminology-service-suite": "file:../react",
