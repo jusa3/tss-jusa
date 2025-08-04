@@ -35,6 +35,8 @@ jobs:
 
       - name: Install root dependencies
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.KM }} # KM PAT for gh-pages-multi
 
       - name: Install and build React package
         working-directory: packages/react
