@@ -162,20 +162,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.KM }} # KM PAT for esbuild-dynamic-import and gh-pages-multi
 
-      - name: Install and Build JS Storybook
-        working-directory: packages/js
-        run: |
-          npm install
-          npm run build:storybook -- -o js
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.KM }}
-
-      - name: Upload js artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          name: js-widgets
-          path: 'js'
-
       - name: Install and Build React Storybook
         working-directory: packages/react
         run: |
@@ -189,6 +175,20 @@ jobs:
         with:
           name: react-widgets
           path: 'react'
+
+      - name: Install and Build JS Storybook
+        working-directory: packages/js
+        run: |
+          npm install
+          npm run build:storybook -- -o js
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.KM }}
+
+      - name: Upload js artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: js-widgets
+          path: 'js'
 
       - name: Install and Build Composed Storybook
         run: |
