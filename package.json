@@ -7,6 +7,10 @@
     "src/react",
     "src/js"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "public"
+  },
   "scripts": {
     "build": "npx vite build",
     "semantic-release": "npx semantic-release",
