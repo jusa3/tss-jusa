@@ -126,7 +126,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.KM }}@github.com/${{ github.repository }}.git
           git add package.json
-          git commit -m 'chore(release): update JS package.json to v"$VERSION"'
+          git commit -m 'chore(release): update JS package version"'
           git push
 
   print-debug:
@@ -193,7 +193,7 @@ jobs:
       - name: Install and Build Composed Storybook
         run: |
           npm install
-          npm run build-storybook -- -o public
+          npm run build:storybook -- -o public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.KM }}
 
