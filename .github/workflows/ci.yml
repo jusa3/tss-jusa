@@ -171,7 +171,7 @@ jobs:
         working-directory: packages/react
         run: |
           npm install
-          npm run build:storybook -- -o react
+          npm run build:storybook -- -o ../../storybook-static/react
         env:
           NODE_AUTH_TOKEN: ${{ secrets.KM }}
 
@@ -179,14 +179,14 @@ jobs:
         working-directory: packages/js
         run: |
           npm install
-          npm run build:storybook -- -o js
+          npm run build:storybook -- -o ../../storybook-static/js
         env:
           NODE_AUTH_TOKEN: ${{ secrets.KM }}
 
       - name: Install and Build Composed Storybook
         run: |
           npm install
-          npm run build:storybook -- -o public
+          npm run build:storybook -- -o storybook-static/public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.KM }}
 
@@ -195,9 +195,9 @@ jobs:
         with:
           name: docs-artifacts
           path: |
-            packages/react/react
-            packages/js/js
-            public
+            storybook-static/react
+            storybook-static/js
+            storybook-static/public
 
       - name: Set Git Author Identity
         run: |
@@ -219,9 +219,9 @@ jobs:
           SRVERSION: ${{ needs.build.outputs.srversion }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npx gh-pages-multi deploy -s packages/react --no-history -t react/latest
-          npx gh-pages-multi deploy -s packages/js --no-history -t js/latest
-          npx gh-pages-multi deploy -s public --no-history -t comp/latest
+          npx gh-pages-multi deploy -s storybook-static/react --no-history -t react/latest
+          npx gh-pages-multi deploy -s storybook-static/js --no-history -t js/latest
+          npx gh-pages-multi deploy -s storybook-static/public --no-history -t comp/latest
 
   documentation-versioned:
     if: github.ref == 'refs/heads/main' && needs.build.outputs.srrelease == 'release'
@@ -275,6 +275,6 @@ jobs:
           SRVERSION: ${{ needs.build.outputs.srversion }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npx gh-pages-multi deploy -s artifacts/react --no-history -t react/"$SRVERSION"
-          npx gh-pages-multi deploy -s artifacts/html --no-history -t html/"$SRVERSION"
-          npx gh-pages-multi deploy -s artifacts/public --no-history -t comp/"$SRVERSION"
+          npx gh-pages-multi deploy -s artifacts/storybook-static/react --no-history -t react/"$SRVERSION"
+          npx gh-pages-multi deploy -s artifacts/storybook-static/js --no-history -t js/"$SRVERSION"
+          npx gh-pages-multi deploy -s artifacts/storybook-static/public --no-history -t comp/"$SRVERSION"
