@@ -1,0 +1,13 @@
+import{b as n}from"./iframe-CTDlrwV_.js";import{E as i}from"./badge-BlGAMJ8n.js";import{E as a}from"./widgetDescriptions-BWQxYL9a.js";function r(e){const o=e.className||"ts4nfdi-breadcrumb-style";return n.jsx(n.Fragment,{children:n.jsxs("span",{className:o,children:[n.jsx("span",{onClick:()=>{e.onNavigateToOntology&&e.onNavigateToOntology(e.ontologyId||"",void 0,void 0)},role:"button",tabIndex:0,onKeyDown:t=>{t.key==="Enter"&&t.currentTarget.click()},children:n.jsx(i,{className:e.ontologyId?"breadcrumb clickable-breadcrumb":"breadcrumb",color:e.colorFirst||"primary",children:e.ontologyName?e.ontologyName.toUpperCase():"No ontology name available"})})," ",n.jsx(a,{type:"arrowRight"})," ",n.jsx(i,{className:"breadcrumb",color:e.colorSecond||"success",children:e.shortForm?e.shortForm.toUpperCase():"No short form available"})]})})}r.__docgenInfo={description:"",methods:[],displayName:"BreadcrumbPresentation",props:{ontologyId:{required:!1,tsType:{name:"string"},description:"Select a specific ontology by id"},colorFirst:{required:!1,tsType:{name:"union",raw:"EuiLinkColor | string",elements:[{name:"EuiLinkColor"},{name:"string"}]},description:"Color of the first badge, can be primary, accent, success, warning, danger, ghost, text, subdued or a hex / rgb value"},colorSecond:{required:!1,tsType:{name:"union",raw:"EuiLinkColor | string",elements:[{name:"EuiLinkColor"},{name:"string"}]},description:"Color of the second badge, can be primary, accent, success, warning, danger, ghost, text, subdued or a hex / rgb value"},className:{required:!1,tsType:{name:"string"},description:"CSS class for styling"},ontologyName:{required:!0,tsType:{name:"string"},description:""},shortForm:{required:!0,tsType:{name:"string"},description:""},onNavigateToOntology:{required:!1,tsType:{name:"union",raw:`((
+  ontologyId: string,
+  entityType?: string,
+  entity?: EntityData,
+) => void) | string`,elements:[{name:"unknown"},{name:"string"}]},description:`This function is called every time an entity link is clicked
+@param ontologyId obtains the ontologyId of the clicked badge
+@param entityType obtains the entityType of the clicked badge
+@param entity.iri obtains the iri of the clicked badge (can be empty)
+@param entity.label obtains the label of the clicked badge
+@param entity.definedBy obtains the list of ontologies the clicked entity is defined in (only OLS)
+@param entity.hasChildren obtains a boolean indicating whether the clicked entity has child entities
+@param entity.numDescendants obtains the number of hierarchical descendants of the clicked entity (only OLS)
+@param entity.parents obtains the list of parent entities of the clicked entity (only OLS, Skosmos)`}}};export{r as B};
