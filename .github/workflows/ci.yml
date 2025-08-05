@@ -195,8 +195,8 @@ jobs:
         with:
           name: docs-artifacts
           path: |
-            packages/react
-            packages/js
+            packages/react/react
+            packages/js/js
             public
 
       - name: Set Git Author Identity
