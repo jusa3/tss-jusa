@@ -219,9 +219,9 @@ jobs:
           SRVERSION: ${{ needs.build.outputs.srversion }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npx gh-pages-multi deploy -s storybook-static/react --no-history -t react/latest
-          npx gh-pages-multi deploy -s storybook-static/js --no-history -t js/latest
-          npx gh-pages-multi deploy -s storybook-static/public --no-history -t comp/latest
+          npx gh-pages-multi deploy -s react --no-history -t react/latest
+          npx gh-pages-multi deploy -s js --no-history -t js/latest
+          npx gh-pages-multi deploy -s public --no-history -t comp/latest
 
   documentation-versioned:
     if: github.ref == 'refs/heads/main' && needs.build.outputs.srrelease == 'release'
@@ -275,6 +275,6 @@ jobs:
           SRVERSION: ${{ needs.build.outputs.srversion }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npx gh-pages-multi deploy -s artifacts/storybook-static/react --no-history -t react/"$SRVERSION"
-          npx gh-pages-multi deploy -s artifacts/storybook-static/js --no-history -t js/"$SRVERSION"
-          npx gh-pages-multi deploy -s artifacts/storybook-static/public --no-history -t comp/"$SRVERSION"
+          npx gh-pages-multi deploy -s artifacts/react --no-history -t react/"$SRVERSION"
+          npx gh-pages-multi deploy -s artifacts/js --no-history -t js/"$SRVERSION"
+          npx gh-pages-multi deploy -s artifacts/public --no-history -t comp/"$SRVERSION"
