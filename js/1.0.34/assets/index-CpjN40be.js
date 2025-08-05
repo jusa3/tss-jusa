@@ -1,0 +1,1 @@
+import{c as s,j as i}from"./index-CossuYGe.js";import{aN as a}from"./storyArgs-D6apI4ht.js";const r=new WeakMap;function d(o,e){let t=r.get(e);t||(t=s.createRoot(e),r.set(e,t)),t.render(i.jsx(a,{...o}))}window.ts4nfdiWidgets={...window.ts4nfdiWidgets,createHierarchy:d};export{d as c};

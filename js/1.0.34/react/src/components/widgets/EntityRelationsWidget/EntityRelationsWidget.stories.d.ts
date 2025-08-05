@@ -1,0 +1,46 @@
+import { EntityRelationsWidget } from './EntityRelationsWidget';
+import { manuallyEmbedOnNavigate } from '../../../app/util';
+import { StoryObj } from '@storybook/react-vite';
+declare const meta: {
+    title: string;
+    component: typeof EntityRelationsWidget;
+    parameters: {
+        layout: string;
+        docs: {
+            source: {
+                transform: typeof manuallyEmbedOnNavigate;
+            };
+            description: {
+                component: string;
+            };
+        };
+    };
+    argTypes: {
+        [x: string]: import('storybook/internal/csf').InputType;
+    };
+    args: {
+        readonly api: "https://semanticlookup.zbmed.de/api/";
+        readonly iri: "";
+        readonly ontologyId: "";
+        readonly entityType: "term";
+        readonly hasTitle: true;
+        readonly showBadges: true;
+        readonly parameter: "";
+        readonly onNavigateToEntity: "Console message";
+        readonly onNavigateToOntology: "Console message";
+        readonly onNavigateToDisambiguate: "Console message";
+    };
+};
+export default meta;
+type Story = StoryObj<typeof meta>;
+export declare const SubEntityOf: Story;
+export declare const AllValuesFrom: Story;
+export declare const DifferentFrom: Story;
+export declare const EquivalentTo: Story;
+export declare const SingleValue: Story;
+export declare const InverseOf: Story;
+export declare const PropertyChain: Story;
+export declare const Instances: Story;
+export declare const Axioms: Story;
+export declare const QualifiedCardinality: Story;
+export declare const NavigateToEBIPage: Story;
