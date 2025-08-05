@@ -1,0 +1,10 @@
+import{S}from"./SearchBarWidget-DGRCM2-v.js";import{E as D,T as d}from"./globals-BpbGe8p9.js";import{a_ as u,p as B,i as _,j as A,a$ as E}from"./widgetDescriptions-BWQxYL9a.js";import"./iframe-CTDlrwV_.js";import"./preload-helper-Dp1pzeXC.js";import"./combo_box-DD86msL8.js";import"./popover-DqYCjRw-.js";import"./focus_trap-R_Q-U58I.js";import"./screen_reader_only-BiUC_Qez.js";import"./badge-BlGAMJ8n.js";import"./inner_text-Dughc4p9.js";import"./flex_item-MEW8UGuL.js";import"./flex_group-DyKh1Yxe.js";import"./toString-CALgyWFC.js";const{action:I}=__STORYBOOK_MODULE_ACTIONS__,{expect:P,waitFor:O,within:W}=__STORYBOOK_MODULE_TEST__,f={...A,..._,...B,...u},N={api:"",query:"",selectionChangedEvent:I("selectionChangedEvent"),parameter:"collection=nfdi4health"},b={api:D,query:"*"},C={api:d,parameter:"classification=NFDI4CHEM&schema=collection"},M={api:d,parameter:"classification=DataPLANT&schema=collection"},t=async({canvasElement:T})=>{const h=W(T);await O(async()=>{const y=h.getByTestId("search-bar");await P(y).toBeInTheDocument()},{timeout:3e3})},z={title:"Search/SearchBarWidget",component:S,parameters:{docs:{description:{component:E}}},argTypes:f,args:N},a={args:b,play:t},r={args:C,play:t},e={args:M,play:t};var o,s,c;a.parameters={...a.parameters,docs:{...(o=a.parameters)==null?void 0:o.docs,source:{originalSource:`{
+  args: SearchBarWidgetDefaultArgs,
+  play: commonSearchBartWidgetPlay
+}`,...(c=(s=a.parameters)==null?void 0:s.docs)==null?void 0:c.source}}};var i,n,p;r.parameters={...r.parameters,docs:{...(i=r.parameters)==null?void 0:i.docs,source:{originalSource:`{
+  args: TibNFDI4CHEMArgs,
+  play: commonSearchBartWidgetPlay
+}`,...(p=(n=r.parameters)==null?void 0:n.docs)==null?void 0:p.source}}};var m,g,l;e.parameters={...e.parameters,docs:{...(m=e.parameters)==null?void 0:m.docs,source:{originalSource:`{
+  args: TibDataPlantArgs,
+  play: commonSearchBartWidgetPlay
+}`,...(l=(g=e.parameters)==null?void 0:g.docs)==null?void 0:l.source}}};const G=["SearchBarWidgetDefault","TibNFDI4CHEM","TibDataPlant"];export{a as SearchBarWidgetDefault,e as TibDataPlant,r as TibNFDI4CHEM,G as __namedExportsOrder,z as default};

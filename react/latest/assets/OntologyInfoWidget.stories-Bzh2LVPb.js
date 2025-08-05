@@ -1,0 +1,13 @@
+import{O as N}from"./OntologyInfoWidget-D7GnJ4Oo.js";import{Z as T,E as f}from"./globals-BpbGe8p9.js";import{F as v,G as E,H as P,J as B,K as S,p as _,T as L,N as D,j as h,au as w,R as b}from"./widgetDescriptions-BWQxYL9a.js";import"./iframe-CTDlrwV_.js";import"./preload-helper-Dp1pzeXC.js";import"./StructureRendering-D__qCoUh.js";import"./icon_tip-Drht4bM1.js";import"./flex_item-MEW8UGuL.js";const{expect:x,waitFor:C,within:M}=__STORYBOOK_MODULE_TEST__,R={...h,...D,...L,..._,...S,...B,...P,...E,...v},F={api:"",useLegacy:!0,ontologyId:"",hasTitle:!0,showBadges:!0,parameter:"",onNavigateToEntity:"Console message",onNavigateToOntology:"Console message",onNavigateToDisambiguate:"Console message"},K={api:T,ontologyId:"atc"},Z={api:T,ontologyId:"ncit"},j={api:f,useLegacy:!1,ontologyId:"mp"},q={api:f,useLegacy:!1,ontologyId:"afo",onNavigateToEntity:"Navigate to EBI page",onNavigateToOntology:"Navigate to EBI page",onNavigateToDisambiguate:"Navigate to EBI page"},n=async({canvasElement:u})=>{const A=M(u);await C(async()=>{const W=A.getByTestId("ontology-info");await x(W).toBeInTheDocument()},{timeout:3e3})},V={title:"Ontology Metadata/OntologyInfoWidget",component:N,parameters:{layout:"centered",docs:{source:{transform:b},description:{component:w}}},argTypes:R,args:F},o={args:K,play:n},a={args:Z,play:n},t={args:j,play:n},e={args:q,play:n};var g,s,r;o.parameters={...o.parameters,docs:{...(g=o.parameters)==null?void 0:g.docs,source:{originalSource:`{
+  args: OntologyInfoWidget1Args,
+  play: commonOntologyInfoWidgetPlay
+}`,...(r=(s=o.parameters)==null?void 0:s.docs)==null?void 0:r.source}}};var i,y,c;a.parameters={...a.parameters,docs:{...(i=a.parameters)==null?void 0:i.docs,source:{originalSource:`{
+  args: OntologyInfoWidget2Args,
+  play: commonOntologyInfoWidgetPlay
+}`,...(c=(y=a.parameters)==null?void 0:y.docs)==null?void 0:c.source}}};var p,l,m;t.parameters={...t.parameters,docs:{...(p=t.parameters)==null?void 0:p.docs,source:{originalSource:`{
+  args: OntologyInfoWidgetOLS4APIArgs,
+  play: commonOntologyInfoWidgetPlay
+}`,...(m=(l=t.parameters)==null?void 0:l.docs)==null?void 0:m.source}}};var d,I,O;e.parameters={...e.parameters,docs:{...(d=e.parameters)==null?void 0:d.docs,source:{originalSource:`{
+  args: NavigateToEBIPageArgs,
+  play: commonOntologyInfoWidgetPlay
+}`,...(O=(I=e.parameters)==null?void 0:I.docs)==null?void 0:O.source}}};const X=["OntologyInfoWidget1","OntologyInfoWidget2","OntologyInfoWidgetOLS4API","NavigateToEBIPage"];export{e as NavigateToEBIPage,o as OntologyInfoWidget1,a as OntologyInfoWidget2,t as OntologyInfoWidgetOLS4API,X as __namedExportsOrder,V as default};
